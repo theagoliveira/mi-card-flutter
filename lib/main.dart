@@ -4,12 +4,21 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Color bg = Colors.indigo;
+  Color bg100 = Colors.indigo[100];
+  Color bg900 = Colors.indigo[900];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.indigo,
+        backgroundColor: bg,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +40,7 @@ class MyApp extends StatelessWidget {
                 'PROFESSOR DE PROGRAMAÇÃO',
                 style: TextStyle(
                   fontFamily: 'Source Sans Pro',
-                  color: Colors.indigo.shade100,
+                  color: bg100,
                   fontSize: 20.0,
                   letterSpacing: 2.5,
                   fontWeight: FontWeight.bold,
@@ -41,7 +50,7 @@ class MyApp extends StatelessWidget {
                 height: 20.0,
                 width: 150.0,
                 child: Divider(
-                  color: Colors.indigo.shade100,
+                  color: bg100,
                 ),
               ),
               Card(
@@ -52,14 +61,14 @@ class MyApp extends StatelessWidget {
                 child: ListTile(
                   leading: Icon(
                     Icons.phone,
-                    color: Colors.indigo,
+                    color: bg,
                   ),
                   title: Text(
                     '+55 (82) 98765-4321',
                     style: TextStyle(
                       fontFamily: 'Source Sans Pro',
                       fontSize: 20.0,
-                      color: Colors.indigo.shade900,
+                      color: bg900,
                     ),
                   ),
                 ),
@@ -72,18 +81,39 @@ class MyApp extends StatelessWidget {
                 child: ListTile(
                   leading: Icon(
                     Icons.email,
-                    color: Colors.indigo,
+                    color: bg,
                   ),
                   title: Text(
                     'thiago.kun@gmail.com',
                     style: TextStyle(
                       fontFamily: 'Source Sans Pro',
                       fontSize: 20.0,
-                      color: Colors.indigo.shade900,
+                      color: bg900,
                     ),
                   ),
                 ),
               ),
+              TextButton(
+                child: Text(
+                  "Clique Aqui!",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                onPressed: () {
+                  setState(() {
+                    if (bg == Colors.indigo) {
+                      bg = Colors.red;
+                      bg100 = Colors.red[100];
+                      bg900 = Colors.red[900];
+                    } else {
+                      bg = Colors.indigo;
+                      bg100 = Colors.indigo[100];
+                      bg900 = Colors.indigo[900];
+                    }
+                  });
+                },
+              )
             ],
           ),
         ),
